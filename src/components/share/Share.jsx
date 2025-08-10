@@ -1,4 +1,4 @@
-// src/components/share/Share.jsx
+
 
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -23,13 +23,13 @@ export default function Share() {
             data.append("name", fileName);
             data.append("file", file);
             
-            // --- MODIFIED LOGIC: Check if file is image or video ---
+            
             if (file.type.startsWith("video/")) {
                 newPost.video = fileName;
             } else {
                 newPost.img = fileName;
             }
-            // --- END OF MODIFIED LOGIC ---
+           
 
             try {
                 await api.post("/upload", data);
@@ -58,7 +58,7 @@ export default function Share() {
                     <label htmlFor="file" className="flex items-center gap-2 cursor-pointer text-neon-secondary hover:opacity-80">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l-1.586-1.586a2 2 0 00-2.828 0L6 14" /></svg>
                         <span className="font-semibold">Photo or Video</span>
-                        {/* --- MODIFIED INPUT: Now accepts videos --- */}
+                       
                         <input 
                             type="file" 
                             id="file" 

@@ -1,4 +1,4 @@
-// src/pages/messenger/Messenger.jsx
+
 
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -7,7 +7,7 @@ import Conversation from "../../components/conversation/Conversation";
 import Message from "../../components/message/Message";
 import { io } from "socket.io-client";
 import api from "../../api";
-import Search from '../../components/search/Search'; // --- IMPORT THE SEARCH COMPONENT ---
+import Search from '../../components/search/Search'; 
 
 export default function Messenger() {
   const [conversations, setConversations] = useState([]);
@@ -73,14 +73,14 @@ export default function Messenger() {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // --- ADD THIS FUNCTION TO START A NEW CHAT ---
+  
   const handleStartConversation = async (friend) => {
     try {
       const res = await api.post('/conversations', {
         senderId: user._id,
         receiverId: friend._id,
       });
-      // Check if the conversation already exists in our list
+     
       if (!conversations.find(c => c._id === res.data._id)) {
         setConversations(prev => [...prev, res.data]);
       }
@@ -94,10 +94,10 @@ export default function Messenger() {
     <>
       <Topbar />
       <div className="h-[calc(100vh-70px)] flex bg-background-primary">
-        {/* Chat Menu */}
+        
         <div className="flex-[3.5] p-4 border-r border-gray-700">
           
-          {/* --- REPLACE THE OLD INPUT WITH THE SEARCH COMPONENT --- */}
+         
           <Search onUserSelect={handleStartConversation} />
 
           <div className="mt-4 flex flex-col gap-2 overflow-y-auto">
@@ -109,7 +109,7 @@ export default function Messenger() {
           </div>
         </div>
 
-        {/* Chat Box */}
+        
         <div className="flex-[5.5] flex flex-col">
           {currentChat ? (
             <>

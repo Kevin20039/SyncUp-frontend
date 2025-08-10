@@ -18,7 +18,7 @@ const AuthReducer = (state, action) => {
             return { user: null, isFetching: false, error: true };
         case "LOGOUT":
             return { user: null, isFetching: false, error: false };
-        // --- ADD THESE TWO NEW CASES ---
+       
         case "FOLLOW":
             return {
                 ...state,
@@ -37,7 +37,7 @@ const AuthReducer = (state, action) => {
                     ),
                 },
             };
-        // --- END OF NEW CASES ---
+        
         default:
             return state;
     }

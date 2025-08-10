@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef } from 'react'; // --- ADD useEffect and useRef ---
-import { Link } from 'react-router-dom'; // --- ADD THIS IMPORT ---
+import { useState, useEffect, useRef } from 'react'; 
+import { Link } from 'react-router-dom'; 
 import api from '../../api';
 
 export default function Search({ onUserSelect }) {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
-    const searchRef = useRef(null); // --- ADD THIS REF ---
+    const searchRef = useRef(null); 
     const PF = import.meta.env.VITE_PUBLIC_FOLDER;
 
     const handleSearch = async (e) => {
@@ -25,16 +25,16 @@ export default function Search({ onUserSelect }) {
     };
 
     const handleSelect = (user) => {
-        // This will now clear the search results when a user is clicked
+        
         setQuery("");
         setResults([]);
-        // If the onUserSelect function is provided (like on the chat page), it will still run
+       
         if (onUserSelect) {
             onUserSelect(user);
         }
     }
 
-    // --- ADD THIS TO CLOSE THE DROPDOWN WHEN CLICKING OUTSIDE ---
+   
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -51,7 +51,7 @@ export default function Search({ onUserSelect }) {
     return (
         <div className="relative" ref={searchRef}>
             <input
-                placeholder="Search..." // Changed placeholder for general use
+                placeholder="Search..." 
                 className="w-full py-2 px-3 rounded-full bg-gray-700/50 text-white focus:outline-none"
                 value={query}
                 onChange={handleSearch}
@@ -59,7 +59,7 @@ export default function Search({ onUserSelect }) {
             {results.length > 0 && (
                 <div className="absolute w-full mt-1 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-10">
                     {results.map(user => (
-                        // --- THE FIX: WRAP THE RESULT IN A <Link> COMPONENT ---
+                        
                         <Link
                             to={`/profile/${user.username}`}
                             key={user._id}
