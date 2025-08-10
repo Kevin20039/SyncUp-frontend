@@ -60,7 +60,7 @@ export default function Post({ post }) {
     };
 
     const handleShare = () => {
-        const postUrl = `${window.location.origin}/post/${post._id}`; // Note: This route doesn't exist yet, but is good for sharing
+        const postUrl = `${window.location.origin}/post/${post._id}`; 
         const shareText = `${postUser.username}: ${post.desc || 'Check out this post!'}`;
 
         if (navigator.share) {
